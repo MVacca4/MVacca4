@@ -1,0 +1,27 @@
+Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contain any char.
+
+
+public class XO {
+  
+  public static boolean getXO (String str) {
+    int xCount = 0;
+    int oCount = 0;
+    str = str.toLowerCase();
+    char[] charArray = str.toCharArray();
+    
+    for (char c : charArray) {
+      if (c == 'x') {
+        xCount++;
+      } else if (c == 'o') {
+        oCount++;
+      } else {
+        // Do nothing.
+      }
+    }
+    if (xCount == oCount) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
