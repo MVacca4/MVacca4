@@ -1,0 +1,42 @@
+Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, 
+which is the number of times you must multiply the digits in num until you reach a single digit.
+
+
+import java.util.ArrayList;
+
+class Persist {  
+  public static int persistence(long n) {
+    String nString = Long.toString(n);
+    int nLength = nString.length();
+    int countLength = 0;
+    ArrayList<Integer> digitHolder = new ArrayList<Integer>();
+    int resultHolder = 1;
+    int counter = 0;
+    
+    if (nLength == 1) {
+      return 0;
+    }
+    
+    do {
+      
+      // Populate digitHolder with digits in nString.
+      for (int i = 0; i < nLength; i++) {
+        digitHolder.add(Character.getNumericValue(nString.charAt(i)));
+      }
+
+      // Multiply each digit in sequence in digitHolder, store in resultHolder.
+      for (int i = 0; i < digitHolder.size(); i++) {
+        resultHolder *= digitHolder.get(i);
+      }
+
+      counter++;
+      countLength = String.valueOf(resultHolder).length();
+      nString = Integer.toString(resultHolder);
+      nLength = nString.length();
+      digitHolder.clear();
+      resultHolder = 1;
+
+    } while (countLength > 1);
+    return counter;
+  }
+}
